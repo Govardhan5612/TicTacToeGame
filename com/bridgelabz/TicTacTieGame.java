@@ -19,6 +19,7 @@ public class TicTacTieGame {
         System.out.println("Player letter : " + playerLetter);
         System.out.println("Computer letter : " + computerLetter);
         printBoard();
+        desireMove();
     }
 
     public static void board() {
@@ -59,5 +60,25 @@ public class TicTacTieGame {
         System.out.println("----------");
         System.out.println(board[7] + " | " + board[8] + " | " + board[9]);
         System.out.println("----------");
+    }
+
+    public static void desireMove() {
+        /**
+         * select the desire location in board
+         */
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter your location (1-9) : ");
+        int number = input.nextInt();
+        if (number < 1 && number > 9) {
+            System.out.println("Enter number in between (1 to 9)");
+            desireMove();
+        } else if (board[number] != ' ') {
+            System.out.println("Already fill this box select new location");
+            desireMove();
+        } else {
+            board[number] = playerLetter;
+            printBoard();
+            desireMove();
+        }
     }
 }
