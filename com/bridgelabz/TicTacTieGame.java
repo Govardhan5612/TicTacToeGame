@@ -103,4 +103,13 @@ public class TicTacTieGame {
             System.out.println(numberOfSpaces + " boxes are available");
         }
     }
+
+    public static boolean whoPlayFirst() {
+        int toss = (int) ((Math.random() * 10) % 2);
+        if (toss == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
