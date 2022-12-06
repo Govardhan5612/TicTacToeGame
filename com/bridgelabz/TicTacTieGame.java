@@ -14,12 +14,14 @@ public class TicTacTieGame {
     static char computerLetter;
 
     public static void main(String[] args) {
-        printBoard();
+        board();
         chooseLetter();
-
+        System.out.println("Player letter : " + playerLetter);
+        System.out.println("Computer letter : " + computerLetter);
+        printBoard();
     }
 
-    public static void printBoard() {
+    public static void board() {
         /**
          * create a single empty space in board
          */
@@ -45,5 +47,17 @@ public class TicTacTieGame {
             computerLetter = 'X';
             playerLetter = 'O';
         }
+    }
+
+    public static void printBoard() {
+        /**
+         * printing the board while playing the game
+         */
+        System.out.println(board[1] + " | " + board[2] + " | " + board[3]);
+        System.out.println("----------");
+        System.out.println(board[4] + " | " + board[5] + " | " + board[6]);
+        System.out.println("----------");
+        System.out.println(board[7] + " | " + board[8] + " | " + board[9]);
+        System.out.println("----------");
     }
 }
