@@ -71,14 +71,36 @@ public class TicTacTieGame {
         int number = input.nextInt();
         if (number < 1 && number > 9) {
             System.out.println("Enter number in between (1 to 9)");
+            checkFreeSpace();
             desireMove();
         } else if (board[number] != ' ') {
             System.out.println("Already fill this box select new location");
+            chooseLetter();
             desireMove();
         } else {
             board[number] = playerLetter;
             printBoard();
+            checkFreeSpace();
             desireMove();
+        }
+    }
+
+    public static void checkFreeSpace() {
+        /**
+         * check the number of boxes are available
+         */
+        boolean freeSpace = false;
+        int numberOfSpaces = 0;
+        for (int i = 1; i < board.length; i++) {
+            if (board[i] == ' ') {
+                freeSpace = true;
+                numberOfSpaces++;
+            }
+        }
+        if (freeSpace == false) {
+            System.out.println("Board is full");
+        } else {
+            System.out.println(numberOfSpaces + " boxes are available");
         }
     }
 }
