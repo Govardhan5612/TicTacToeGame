@@ -105,11 +105,46 @@ public class TicTacTieGame {
     }
 
     public static boolean whoPlayFirst() {
+        /**
+         * random method used to find who play first
+         */
         int toss = (int) ((Math.random() * 10) % 2);
         if (toss == 1) {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public static void winner() {
+        /**
+         * find the winner is player or computer
+         */
+        if ((board[1] == playerLetter && board[2] == playerLetter && board[3] == playerLetter) ||
+                (board[4] == playerLetter && board[5] == playerLetter && board[6] == playerLetter) ||
+                (board[7] == playerLetter && board[8] == playerLetter && board[9] == playerLetter) ||
+                (board[1] == playerLetter && board[4] == playerLetter && board[7] == playerLetter) ||
+                (board[2] == playerLetter && board[5] == playerLetter && board[8] == playerLetter) ||
+                (board[3] == playerLetter && board[5] == playerLetter && board[9] == playerLetter) ||
+                (board[1] == playerLetter && board[5] == playerLetter && board[9] == playerLetter) ||
+                (board[3] == playerLetter && board[5] == playerLetter && board[7] == playerLetter)) {
+            printBoard();
+            System.out.println("Player won the match");
+            System.exit(0);
+        } else if ((board[1] == computerLetter && board[2] == computerLetter && board[3] == computerLetter) ||
+                (board[4] == computerLetter && board[5] == computerLetter && board[6] == computerLetter) ||
+                (board[7] == computerLetter && board[8] == computerLetter && board[9] == computerLetter) ||
+                (board[1] == computerLetter && board[4] == computerLetter && board[7] == computerLetter) ||
+                (board[2] == computerLetter && board[5] == computerLetter && board[8] == computerLetter) ||
+                (board[3] == computerLetter && board[5] == computerLetter && board[9] == computerLetter) ||
+                (board[1] == computerLetter && board[5] == computerLetter && board[9] == computerLetter) ||
+                (board[3] == computerLetter && board[5] == computerLetter && board[7] == computerLetter)) {
+            printBoard();
+            System.out.println("Computer won the match");
+            System.exit(0);
+        } else {
+            System.out.println("Board is full");
+            System.exit(0);
         }
     }
 }
