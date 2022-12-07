@@ -151,7 +151,7 @@ public class TicTacToeGame {
                 (board[3] == playerLetter && board[5] == playerLetter && board[9] == playerLetter) ||
                 (board[1] == playerLetter && board[5] == playerLetter && board[9] == playerLetter) ||
                 (board[3] == playerLetter && board[5] == playerLetter && board[7] == playerLetter)) {
-            System.out.println("Player won the match");
+            System.out.println(" Player won the match ");
             System.exit(0);
         } else if ((board[1] == computerLetter && board[2] == computerLetter && board[3] == computerLetter) ||
                 (board[4] == computerLetter && board[5] == computerLetter && board[6] == computerLetter) ||
@@ -161,11 +161,13 @@ public class TicTacToeGame {
                 (board[3] == computerLetter && board[6] == computerLetter && board[9] == computerLetter) ||
                 (board[1] == computerLetter && board[5] == computerLetter && board[9] == computerLetter) ||
                 (board[3] == computerLetter && board[5] == computerLetter && board[7] == computerLetter)) {
-            System.out.println("Computer won the match");
+            System.out.println(" Computer won the match ");
             System.exit(0);
-
+            /**
+             * if board is full show the message is game is drawn
+             */
         } else if (board[1] != ' ' && board[2] != ' ' && board[3] != ' ' && board[4] != ' ' && board[5] != ' ' && board[6] != ' ' && board[7] != ' ' && board[8] != ' ' && board[9] != ' ') {
-            System.out.println("Board is full game is draw");
+            System.out.println(" Game is over and draw ");
             System.exit(0);
         }
     }
