@@ -191,9 +191,15 @@ public class TicTacToeGame {
                 duplicateNumber = 9;
             }
             /**
+             * take choice to center
+             */
+            else if (board[5] == ' ') {
+                duplicateNumber = 5;
+            }
+            /**
              * Computer block the player
              */
-            if ((board[2] == playerLetter && board[3] == playerLetter) || (board[5] == playerLetter && board[9] == playerLetter) || (board[4] == playerLetter && board[7] == playerLetter)) {
+            else if ((board[2] == playerLetter && board[3] == playerLetter) || (board[5] == playerLetter && board[9] == playerLetter) || (board[4] == playerLetter && board[7] == playerLetter)) {
                 duplicateNumber = 1;
             } else if ((board[1] == playerLetter && board[3] == playerLetter) || (board[5] == playerLetter && board[8] == playerLetter)) {
                 duplicateNumber = 2;
