@@ -179,6 +179,18 @@ public class TicTacToeGame {
             computerNumber = (int) ((Math.random() * 10) % 9 + 1);
             int duplicateNumber = 0;
             /**
+             * take first choice is corners
+             */
+            if(board[1] == ' '){
+                duplicateNumber = 1;
+            } else if(board[3] == ' ' ){
+                duplicateNumber = 3;
+            } else if (board[7] == ' ') {
+                duplicateNumber = 7;
+            } else if (board[9] == ' ') {
+                duplicateNumber = 9;
+            }
+            /**
              * Computer block the player
              */
             if ((board[2] == playerLetter && board[3] == playerLetter) || (board[5] == playerLetter && board[9] == playerLetter) || (board[4] == playerLetter && board[7] == playerLetter)) {
