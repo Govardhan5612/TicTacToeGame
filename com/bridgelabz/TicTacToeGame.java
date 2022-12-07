@@ -14,6 +14,22 @@ public class TicTacToeGame {
     static char computerLetter;
 
     public static void main(String[] args) {
+        whoWillWin();
+        Scanner input = new Scanner(System.in);
+        System.out.println("1. Play again   2. Stop the play");
+        System.out.print("Enter number : ");
+        int number = input.nextInt();
+        /**
+         * call game again
+         */
+        if (number == 1) {
+            whoWillWin();
+        } else {
+
+        }
+    }
+
+    public static void whoWillWin() {
         board();
         chooseLetter();
         System.out.println("Player letter : " + playerLetter);
@@ -35,19 +51,37 @@ public class TicTacToeGame {
                 computerTurn();
                 printBoard();
                 winner();
+                if (winner() == 1) {
+                    System.out.println("Player is win the game");
+                    break;
+                } else if (winner() == 2) {
+                    System.out.println("Computer is win the game");
+                    break;
+                } else if (winner() == 3) {
+                    System.out.println("Match is draw and board is full");
+                    break;
+                }
             } else {
                 checkFreeSpace();
                 computerTurn();
                 printBoard();
                 winner();
+                if (winner() == 1) {
+                    System.out.println("Player is win the game");
+                    break;
+                } else if (winner() == 2) {
+                    System.out.println("Computer is win the game");
+                    break;
+                } else if (winner() == 3) {
+                    System.out.println("Match is draw and board is full");
+                    break;
+                }
                 checkFreeSpace();
                 desireMove();
                 printBoard();
                 winner();
             }
         }
-
-
     }
 
     public static void board() {
@@ -139,7 +173,7 @@ public class TicTacToeGame {
         }
     }
 
-    public static void winner() {
+    public static int winner() {
         /**
          * find the winner is player or computer
          */
@@ -151,8 +185,7 @@ public class TicTacToeGame {
                 (board[3] == playerLetter && board[5] == playerLetter && board[9] == playerLetter) ||
                 (board[1] == playerLetter && board[5] == playerLetter && board[9] == playerLetter) ||
                 (board[3] == playerLetter && board[5] == playerLetter && board[7] == playerLetter)) {
-            System.out.println(" Player won the match ");
-            System.exit(0);
+            return 1;
         } else if ((board[1] == computerLetter && board[2] == computerLetter && board[3] == computerLetter) ||
                 (board[4] == computerLetter && board[5] == computerLetter && board[6] == computerLetter) ||
                 (board[7] == computerLetter && board[8] == computerLetter && board[9] == computerLetter) ||
@@ -161,14 +194,14 @@ public class TicTacToeGame {
                 (board[3] == computerLetter && board[6] == computerLetter && board[9] == computerLetter) ||
                 (board[1] == computerLetter && board[5] == computerLetter && board[9] == computerLetter) ||
                 (board[3] == computerLetter && board[5] == computerLetter && board[7] == computerLetter)) {
-            System.out.println(" Computer won the match ");
-            System.exit(0);
+            return 2;
             /**
              * if board is full show the message is game is drawn
              */
         } else if (board[1] != ' ' && board[2] != ' ' && board[3] != ' ' && board[4] != ' ' && board[5] != ' ' && board[6] != ' ' && board[7] != ' ' && board[8] != ' ' && board[9] != ' ') {
-            System.out.println(" Game is over and draw ");
-            System.exit(0);
+            return 3;
+        } else {
+            return 4;
         }
     }
 
@@ -181,22 +214,22 @@ public class TicTacToeGame {
             computerNumber = (int) ((Math.random() * 10) % 9 + 1);
             int duplicateNumber = 0;
             /**
+             * take choice to center
+             */
+            if (board[5] == ' ') {
+                duplicateNumber = 5;
+            }
+            /**
              * take first choice is corners
              */
-            if(board[1] == ' '){
+            else if (board[1] == ' ') {
                 duplicateNumber = 1;
-            } else if(board[3] == ' ' ){
+            } else if (board[3] == ' ') {
                 duplicateNumber = 3;
             } else if (board[7] == ' ') {
                 duplicateNumber = 7;
             } else if (board[9] == ' ') {
                 duplicateNumber = 9;
-            }
-            /**
-             * take choice to center
-             */
-            else if (board[5] == ' ') {
-                duplicateNumber = 5;
             }
             /**
              * Computer block the player
