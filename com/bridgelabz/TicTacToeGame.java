@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * @author Govardhan Reddy
  */
-public class TicTacTieGame {
+public class TicTacToeGame {
     /**
      * create a tic tac toe game board programming
      */
@@ -46,6 +46,7 @@ public class TicTacTieGame {
                 winner();
             }
         }
+
 
     }
 
@@ -96,7 +97,7 @@ public class TicTacTieGame {
         int number;
         while (true) {
             Scanner input = new Scanner(System.in);
-            System.out.print("Enter your location (1-9) : ");
+            System.out.print("Enter Player number (1-9) : ");
             number = input.nextInt();
             if (board[number] == ' ') {
                 break;
@@ -176,11 +177,42 @@ public class TicTacTieGame {
         int computerNumber;
         while (true) {
             computerNumber = (int) ((Math.random() * 10) % 9 + 1);
-            if (board[computerNumber] == ' ') {
+            int duplicateNumber = 0;
+            /**
+             * Computer block the player
+             */
+            if ((board[2] == playerLetter && board[3] == playerLetter) || (board[5] == playerLetter && board[9] == playerLetter) || (board[4] == playerLetter && board[7] == playerLetter)) {
+                duplicateNumber = 1;
+            } else if ((board[1] == playerLetter && board[3] == playerLetter) || (board[5] == playerLetter && board[8] == playerLetter)) {
+                duplicateNumber = 2;
+            } else if ((board[1] == playerLetter && board[2] == playerLetter) || (board[5] == playerLetter && board[7] == playerLetter) || (board[6] == playerLetter && board[9] == playerLetter)) {
+                duplicateNumber = 3;
+            } else if ((board[1] == playerLetter && board[7] == playerLetter) || (board[5] == playerLetter && board[6] == playerLetter)) {
+                duplicateNumber = 4;
+            } else if ((board[1] == playerLetter && board[9] == playerLetter) || (board[3] == playerLetter && board[7] == playerLetter) || (board[2] == playerLetter && board[8] == playerLetter) || (board[4] == playerLetter && board[6] == playerLetter)) {
+                duplicateNumber = 5;
+            } else if ((board[4] == playerLetter && board[5] == playerLetter) || (board[3] == playerLetter && board[9] == playerLetter)) {
+                duplicateNumber = 6;
+            } else if ((board[8] == playerLetter && board[9] == playerLetter) || (board[3] == playerLetter && board[5] == playerLetter) || (board[1] == playerLetter && board[4] == playerLetter)) {
+                duplicateNumber = 7;
+            } else if ((board[7] == playerLetter && board[9] == playerLetter) || (board[2] == playerLetter && board[5] == playerLetter)) {
+                duplicateNumber = 8;
+            } else if ((board[7] == playerLetter && board[8] == playerLetter) || (board[3] == playerLetter && board[6] == playerLetter) || (board[1] == playerLetter && board[5] == playerLetter)) {
+                duplicateNumber = 9;
+            }
+
+            if (board[duplicateNumber] == ' ') {
+                computerNumber = duplicateNumber;
+                break;
+                /**
+                 * take random value use random method
+                 */
+            } else if (board[computerNumber] == ' ') {
                 break;
             }
         }
         System.out.println("Computer Number : " + computerNumber);
         board[computerNumber] = computerLetter;
+
     }
 }
