@@ -18,8 +18,35 @@ public class TicTacTieGame {
         chooseLetter();
         System.out.println("Player letter : " + playerLetter);
         System.out.println("Computer letter : " + computerLetter);
-        printBoard();
-        desireMove();
+        boolean winToss = whoPlayFirst();
+        if (winToss == true) {
+            System.out.println("Player won the toss");
+        } else {
+            System.out.println("Computer won the toss");
+        }
+        while (true) {
+
+            if (winToss == true) {
+                checkFreeSpace();
+                desireMove();
+                printBoard();
+                winner();
+                checkFreeSpace();
+                computerTurn();
+                printBoard();
+                winner();
+            } else {
+                checkFreeSpace();
+                computerTurn();
+                printBoard();
+                winner();
+                checkFreeSpace();
+                desireMove();
+                printBoard();
+                winner();
+            }
+        }
+
     }
 
     public static void board() {
@@ -66,23 +93,17 @@ public class TicTacTieGame {
         /**
          * select the desire location in board
          */
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter your location (1-9) : ");
-        int number = input.nextInt();
-        if (number < 1 && number > 9) {
-            System.out.println("Enter number in between (1 to 9)");
-            checkFreeSpace();
-            desireMove();
-        } else if (board[number] != ' ') {
-            System.out.println("Already fill this box select new location");
-            chooseLetter();
-            desireMove();
-        } else {
-            board[number] = playerLetter;
-            printBoard();
-            checkFreeSpace();
-            desireMove();
+        int number;
+        while (true) {
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter your location (1-9) : ");
+            number = input.nextInt();
+            if (board[number] == ' ') {
+                break;
+            }
         }
+        System.out.println("Player Number : " + number);
+        board[number] = playerLetter;
     }
 
     public static void checkFreeSpace() {
@@ -111,6 +132,7 @@ public class TicTacTieGame {
         int toss = (int) ((Math.random() * 10) % 2);
         if (toss == 1) {
             return true;
+
         } else {
             return false;
         }
@@ -128,7 +150,6 @@ public class TicTacTieGame {
                 (board[3] == playerLetter && board[5] == playerLetter && board[9] == playerLetter) ||
                 (board[1] == playerLetter && board[5] == playerLetter && board[9] == playerLetter) ||
                 (board[3] == playerLetter && board[5] == playerLetter && board[7] == playerLetter)) {
-            printBoard();
             System.out.println("Player won the match");
             System.exit(0);
         } else if ((board[1] == computerLetter && board[2] == computerLetter && board[3] == computerLetter) ||
@@ -136,15 +157,30 @@ public class TicTacTieGame {
                 (board[7] == computerLetter && board[8] == computerLetter && board[9] == computerLetter) ||
                 (board[1] == computerLetter && board[4] == computerLetter && board[7] == computerLetter) ||
                 (board[2] == computerLetter && board[5] == computerLetter && board[8] == computerLetter) ||
-                (board[3] == computerLetter && board[5] == computerLetter && board[9] == computerLetter) ||
+                (board[3] == computerLetter && board[6] == computerLetter && board[9] == computerLetter) ||
                 (board[1] == computerLetter && board[5] == computerLetter && board[9] == computerLetter) ||
                 (board[3] == computerLetter && board[5] == computerLetter && board[7] == computerLetter)) {
-            printBoard();
             System.out.println("Computer won the match");
             System.exit(0);
-        } else {
-            System.out.println("Board is full");
+
+        } else if (board[1] != ' ' && board[2] != ' ' && board[3] != ' ' && board[4] != ' ' && board[5] != ' ' && board[6] != ' ' && board[7] != ' ' && board[8] != ' ' && board[9] != ' ') {
+            System.out.println("Board is full game is draw");
             System.exit(0);
         }
+    }
+
+    public static void computerTurn() {
+        /**
+         * in computer turn take random values in between 1 to 9
+         */
+        int computerNumber;
+        while (true) {
+            computerNumber = (int) ((Math.random() * 10) % 9 + 1);
+            if (board[computerNumber] == ' ') {
+                break;
+            }
+        }
+        System.out.println("Computer Number : " + computerNumber);
+        board[computerNumber] = computerLetter;
     }
 }
